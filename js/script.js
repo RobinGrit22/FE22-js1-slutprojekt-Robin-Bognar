@@ -5,12 +5,12 @@ $('#btn').click(function(event){
     let text = $('#userSearch').val();
     if(text == ''){
         $('.lds-ellipsis').css('visibility', 'hidden')
-        throw 'please write something to search for';
     }
     let userNumber = $('#howMany').val();
     if(userNumber < 1){
         $('.lds-ellipsis').css('visibility', 'hidden')
-        throw 'please chose quantity';
+        alert('please chose quantity')
+        return;
     }
     let sortSelect = $('#sort').val();
     let sizeInput = $('#size').val();
@@ -19,7 +19,12 @@ $('#btn').click(function(event){
     ${text}&sort=${sortSelect}&per_page=${userNumber}&format=json&nojsoncallback=1`
     $.getJSON(apiUrl,{ 
     }).done(function(data){
-        let getImageIds = data.photos.photo
+        if (data.photos && data.photos.photo) {
+            let getImageIds = data.photos.photo
+            if (getImageIds.length === 0) {
+                $('.lds-ellipsis').css('visibility', 'hidden')
+                alert('No images found for the given search text');
+            } else {
                 for(let i = 0; i < getImageIds.length; i++){
                     let id = getImageIds[i].id
                     let secret = getImageIds[i].secret
@@ -31,8 +36,13 @@ $('#btn').click(function(event){
                     $('.lds-ellipsis').css('visibility', 'hidden')
                     $('img').css('margin','10px')
                 }
+            }
+        } else {
+            alert('No images found for the given search text');
+        }
     }).fail(function(jqXHR, textStatus, errorThrown){
         console.log(jqXHR, textStatus, errorThrown)
         $('.lds-ellipsis').css('visibility', 'hidden')
+        alert('An error occurred while searching for images. Please try again later.');
     })
-})
+}); 
