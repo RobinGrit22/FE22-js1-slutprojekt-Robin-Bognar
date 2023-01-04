@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/script.js" defer></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.js"
+      integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Search photo from flickr</h1>
+      <form>
+            <label for="userSearch"></label>
+            <input type="text" placeholder="Type keywords" id="userSearch" />
+        <div class="form-container">
+            <label for="howMany">Choose Quantity</label>
+            <input type="number" value="1"  id="howMany" />
+            <label for="size">Pick Size</label>
+            <select name="size" placeholder="Choose" id="size">
+              <option name="size" value="m">Small</option>
+              <option name="size" value="z">Medium</option>
+              <option name="size" value="b">Large</option>
+            </select>
+            <label for="sort">Sort By</label>
+            <select name="sort" id="sort">
+              <option name="sort" value="relevance">Relevance</option>
+              <option name="sort" value="date-posted-asc">Date</option>
+              <option name="sort" value="interestingness-asc">
+                Intrestingness
+              </option>
+            </select>
+        <div>
+            <button  id="btn">Search</button>
+        </div>
+        
+    </div>
+        <a href=""></a>
+      </form>
+      <div class="lds-ellipsis grid-item-3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div id="img-container"></div>
+    </div>
+  </body>
+</html>
